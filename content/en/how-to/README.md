@@ -1,63 +1,38 @@
-# How-to guides
+# how-to/
 
-> Diátaxis: **goal-oriented**  
-> Answers: “I need to accomplish something — what are the steps?”
+Executable how-tos for this docs tree (HITL + greenfield agent prompts). Brownfield procedures live under [`../specs/`](../specs/).
 
-How-tos assume the reader already has basics and give executable steps. Do not write them as concept lessons, and do not expand into a full API encyclopedia.
+## Contents of this directory
 
----
+| Path | Purpose |
+|------|---------|
+| [hitl-alignment.md](./hitl-alignment.md) | HITL + Spec-driven + agree one slice at a time |
+| [agent-prompts/](./agent-prompts/) | Greenfield stages 00–04; see [agent-prompts/README.md](./agent-prompts/README.md) |
 
-## Shipped (template-universal)
+### agent-prompts/ quick map
 
-The following ships with the template into new repos and is product-agnostic.
+| File | Purpose |
+|------|---------|
+| [00-overview.md](./agent-prompts/00-overview.md) | Overview, iron laws, dual paths, path I/O |
+| [01-overall-design.md](./agent-prompts/01-overall-design.md) | Overall development docs |
+| [02-module-spec.md](./agent-prompts/02-module-spec.md) | Module-level specs |
+| [03-implement.md](./agent-prompts/03-implement.md) | Implement from module doc (close with 🔍) |
+| [04-accept.md](./agent-prompts/04-accept.md) | Independent accept (mark ✅ on pass) |
 
-### Human–AI collaboration
+### Brownfield entry points (bodies under specs/)
 
-| Guide | Purpose |
-|------|------|
-| [HITL iron rule — incremental consensus](./hitl-alignment.md) | **HITL + Spec-driven + agree one slice at a time** (default posture for locking Spec) |
-
-### Agent / IDE prompts (greenfield)
-
-System entry: [agent-prompts/README.md](./agent-prompts/README.md); read [00-overview.md](./agent-prompts/00-overview.md) first:
-
-| Guide | Purpose |
-|------|------|
-| [00-overview.md](./agent-prompts/00-overview.md) | Overview, immutable principles, dual paths (incl. lightweight track), path I/O |
-| [01-overall-design.md](./agent-prompts/01-overall-design.md) | Generate overall development docs |
-| [02-module-spec.md](./agent-prompts/02-module-spec.md) | Generate module-level development docs |
-| [03-implement.md](./agent-prompts/03-implement.md) | Code from the module doc (close with 🔍) |
-| [04-accept.md](./agent-prompts/04-accept.md) | Independent acceptance pass (do not edit Spec body; mark ✅ on pass) |
-
-### Brownfield / iteration (SDD)
-
-Brownfield procedure lives under `specs/`; this page only provides entry points:
-
-| Guide | Purpose |
-|------|------|
-| [../specs/README.md](../specs/README.md) | When to take the brownfield path |
-| [../specs/SDD-GUIDE.md](../specs/SDD-GUIDE.md) | IDE single-line, §2.5 agree one slice at a time, HITL |
-| [../specs/ci-probes.md](../specs/ci-probes.md) | CI machine probes (anti-drift) |
+| File | Purpose |
+|------|---------|
+| [../specs/README.md](../specs/README.md) | When to use brownfield |
+| [../specs/SDD-GUIDE.md](../specs/SDD-GUIDE.md) | IDE single-line, one-slice HITL |
+| [../specs/ci-probes.md](../specs/ci-probes.md) | CI machine probes |
 | [../specs/tasks/_template.md](../specs/tasks/_template.md) | Task-pack template |
 
----
-
-## To add per project
-
-The following is **not** fixed template content; link only when body exists — do not pre-create dead links:
+## Optional per-project additions (link only when body exists)
 
 | Type | Notes |
-|------|------|
-| `vertical-slice-accept.md` (optional) | Vertical-slice checklist for human acceptance |
-| Project-specific how-tos | Steps bound to a product / environment (deploy, integration, release, etc.) |
+|------|-------|
+| `vertical-slice-accept.md` (optional) | Vertical-slice accept checklist |
+| Project-specific how-tos | Deploy / integration / release (may live at product repo root) |
 
-Engineering bootstrap, client notes, etc. belong at **that project’s repo root** (or its agreed directory), not hard-wired into this template.
-
----
-
-## Do not put here
-
-- Full error-code tables, DDL, field inventories → [`../reference/`](../reference/)  
-- Why it was designed this way → [`../explanation/`](../explanation/)  
-- Iteration task-pack working drafts → [`../specs/`](../specs/)  
-- Controlled onboarding exercises (one step, one expected result) → [`../tutorials/`](../tutorials/)
+Field inventories / design rationale / task packs / guided drills → `reference/` · `explanation/` · `specs/` · `tutorials/`.
