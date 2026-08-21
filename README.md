@@ -10,6 +10,7 @@ You lock behavior in files, agree with a human one slice at a time, then impleme
 | | |
 |--|--|
 | Type | Opinionated Cursor Agent Skill (MIT) |
+| Version | 0.2.0 |
 | Docs | [English](content/en/) · [中文](content/zh/) |
 
 ---
@@ -62,6 +63,17 @@ Greenfield lite:  (maintainer explicit; 01 exists; no arch change) → 02 → 03
 Brownfield:       task pack → implement + self-check → maintainer HITL → archive (+ INDEX.md)
 ```
 
+```mermaid
+flowchart LR
+  PRD[PRD] --> S01[01 Design]
+  S01 --> S02[02 Module spec]
+  S02 --> S03[03 Implement]
+  S03 --> S04[04 Accept]
+  S04 -->|pass| Done[Module done]
+  S04 -->|fail code| S03
+  S04 -->|fail spec| S02
+```
+
 | Stage | Job |
 |-------|-----|
 | 00 | Overview / iron laws |
@@ -78,23 +90,30 @@ Details: [SKILL.md](SKILL.md) · [content/en/how-to/agent-prompts/00-overview.md
 
 ## Install
 
-### Personal skill (all projects)
+### One-liner (recommended)
 
-Copy or clone this repo to:
-
-```text
-~/.cursor/skills/write-before-code/
+```bash
+# macOS / Linux — from a clone of this repo
+./scripts/install.sh
 ```
 
-Windows example:
-
-```text
-C:\Users\<you>\.cursor\skills\write-before-code\
+```powershell
+# Windows PowerShell — from a clone of this repo
+.\scripts\install.ps1
 ```
 
-`SKILL.md` must sit at the root of that folder.
+This copies the skill into `~/.cursor/skills/write-before-code/` (Windows: `%USERPROFILE%\.cursor\skills\write-before-code\`).
 
-### Project skill (one repo)
+### Manual
+
+```text
+git clone https://github.com/carlospan/write-before-code.git
+# then copy/symlink the repo to ~/.cursor/skills/write-before-code
+```
+
+`SKILL.md` must sit at the skill folder root.
+
+### Project skill (one repo only)
 
 ```text
 <repo>/.cursor/skills/write-before-code/
@@ -102,14 +121,22 @@ C:\Users\<you>\.cursor\skills\write-before-code\
 
 ### Project docs template
 
-Copy **one** language tree into the product’s `docs/` (or use it as the docs root):
+Copy **one** language tree into the product’s `docs/`:
 
 | Language | Copy from |
 |----------|-----------|
 | English | `content/en/` → `docs/` |
 | 中文 | `content/zh/` → `docs/` |
 
-`template/` is a convenience mirror of `content/zh/`.
+### Brownfield attachment filenames
+
+| Role | English docs | Chinese docs |
+|------|--------------|--------------|
+| Design | `*-design.md` | `*-方案.md` |
+| Receipt | `*-receipt.md` | `*-回执.md` |
+| Acceptance | `*-acceptance.md` | `*-验收记录.md` |
+
+Do not mix suffixes inside one project docs tree.
 
 ---
 
@@ -145,27 +172,28 @@ Toy PRD: [examples/toy-prd.md](examples/toy-prd.md) · [中文](examples/toy-prd
 
 ```text
 write-before-code/
-├── SKILL.md          # Agent entry
-├── README.md         # English (this file)
-├── README.zh-CN.md   # Chinese
-├── LICENSE
-├── CHANGELOG.md
+├── SKILL.md              # Agent entry
+├── skill.json            # Version / tags metadata
+├── README.md             # English (this file)
+├── README.zh-CN.md       # Chinese
+├── CONTRIBUTING.md
+├── scripts/              # install + parity check
 ├── examples/
-├── stages/
-├── guides/
 ├── content/
-│   ├── en/
-│   └── zh/
-└── template/         # Mirror of content/zh
+│   ├── en/               # Full English corpus
+│   └── zh/               # Full Chinese corpus
+└── .github/              # CI + issue templates
 ```
 
 ---
 
 ## Contributing
 
-- Change process rules in **both** `content/en/` and `content/zh/`.
-- Keep `SKILL.md` under ~500 lines; put detail in `content/`.
-- Run a toy greenfield pass before opening a PR.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Process PRs must update **both** `content/en/` and `content/zh/`.
+
+```bash
+python scripts/check-parity.py
+```
 
 ---
 

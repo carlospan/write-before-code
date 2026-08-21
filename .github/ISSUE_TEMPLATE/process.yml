@@ -1,0 +1,19 @@
+name: Process improvement
+description: Propose a change to the write-before-code workflow
+title: "[process] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What failure mode or friction are you seeing?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Concrete rule / doc / stage change. Note EN+ZH sync if process-related.
+    validations:
+      required: true

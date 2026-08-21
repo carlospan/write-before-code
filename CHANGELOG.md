@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 — 2026-08-21
+
+- Repo hygiene: removed duplicate `template/`, thin `stages/`, and `guides/`.
+- Skill packaging: `skill.json`, UTF-8-safe `SKILL.md` description, install scripts.
+- Contributing + EN/ZH corpus parity check (`scripts/check-parity.py`) and GitHub Action.
+- Issue templates; README install one-liners, mermaid pipeline, attachment filename table.
+
 ## 0.1.3 — 2026-08-21
 
 - README product intro first (problem, value, who it’s for / not for), then install and quick start.
@@ -19,6 +26,5 @@
 
 - Initial public skeleton: Cursor skill `write-before-code`.
 - Full bilingual corpus under `content/en/` and `content/zh/` (Diátaxis docs + agent stages 00–04 + brownfield SDD).
-- Project template mirror: `template/` (= Chinese tree).
 - Iron laws: write-before-code, HITL, one focus, agree one slice at a time, no self-pass, no fake green.
 - Example: `examples/toy-prd.md`.

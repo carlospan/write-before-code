@@ -10,6 +10,7 @@
 | | |
 |--|--|
 | 形态 | 有主见的 Cursor Agent Skill（MIT） |
+| 版本 | 0.2.0 |
 | 文档 | [English](content/en/) · [中文](content/zh/) |
 
 ---
@@ -62,6 +63,17 @@ Agent 写代码很快，但对齐意图很容易偷懒。常见翻车：
 棕地：      任务包 → 编码自验 → 维护者 HITL → 归档（须 INDEX.md）
 ```
 
+```mermaid
+flowchart LR
+  PRD[PRD] --> S01[01 整体设计]
+  S01 --> S02[02 模块文档]
+  S02 --> S03[03 编码]
+  S03 --> S04[04 验收]
+  S04 -->|通过| Done[模块完成]
+  S04 -->|代码不符| S03
+  S04 -->|规格不合格| S02
+```
+
 | 阶段 | 职责 |
 |------|------|
 | 00 | 总纲 / 铁律 |
@@ -78,23 +90,30 @@ Agent 写代码很快，但对齐意图很容易偷懒。常见翻车：
 
 ## 安装
 
-### 个人 Skill（所有项目可用）
+### 一键安装（推荐）
 
-将本仓库复制或克隆到：
-
-```text
-~/.cursor/skills/write-before-code/
+```bash
+# macOS / Linux — 在本仓库克隆目录内
+./scripts/install.sh
 ```
 
-Windows 常见路径：
-
-```text
-C:\Users\<你>\.cursor\skills\write-before-code\
+```powershell
+# Windows PowerShell — 在本仓库克隆目录内
+.\scripts\install.ps1
 ```
 
-该目录根下必须有 `SKILL.md`。
+会安装到 `~/.cursor/skills/write-before-code/`（Windows：`%USERPROFILE%\.cursor\skills\write-before-code\`）。
 
-### 项目级 Skill（单个仓库）
+### 手动
+
+```text
+git clone https://github.com/carlospan/write-before-code.git
+# 再复制/链接到 ~/.cursor/skills/write-before-code
+```
+
+Skill 目录根下必须有 `SKILL.md`。
+
+### 项目级 Skill（仅单个仓库）
 
 ```text
 <仓库>/.cursor/skills/write-before-code/
@@ -102,14 +121,22 @@ C:\Users\<你>\.cursor\skills\write-before-code\
 
 ### 项目文档模板
 
-把**一种**语言的文档树复制到产品仓库的 `docs/`（或以该树作为文档根）：
+把**一种**语言的文档树复制到产品仓库的 `docs/`：
 
 | 语言 | 复制来源 |
 |------|----------|
 | 中文 | `content/zh/` → `docs/` |
 | English | `content/en/` → `docs/` |
 
-`template/` 是 `content/zh/` 的便利镜像。
+### 棕地附件文件名
+
+| 角色 | 英文文档树 | 中文文档树 |
+|------|------------|------------|
+| 方案 | `*-design.md` | `*-方案.md` |
+| 回执 | `*-receipt.md` | `*-回执.md` |
+| 验收记录 | `*-acceptance.md` | `*-验收记录.md` |
+
+同一项目文档树内不要混用后缀。
 
 ---
 
@@ -145,27 +172,28 @@ C:\Users\<你>\.cursor\skills\write-before-code\
 
 ```text
 write-before-code/
-├── SKILL.md          # Agent 入口
-├── README.md         # 英文
-├── README.zh-CN.md   # 中文（本文件）
-├── LICENSE
-├── CHANGELOG.md
+├── SKILL.md              # Agent 入口
+├── skill.json            # 版本 / 标签元数据
+├── README.md             # 英文
+├── README.zh-CN.md       # 中文（本文件）
+├── CONTRIBUTING.md
+├── scripts/              # 安装 + 语料对齐检查
 ├── examples/
-├── stages/
-├── guides/
 ├── content/
 │   ├── en/
 │   └── zh/
-└── template/         # content/zh 镜像
+└── .github/              # CI + Issue 模板
 ```
 
 ---
 
 ## 贡献
 
-- 改流程规则时，**同时**改 `content/zh/` 与 `content/en/`。  
-- `SKILL.md` 控制在约 500 行以内；细则放进 `content/`。  
-- 提 PR 前用玩具绿场跑通一遍。
+见 [CONTRIBUTING.zh-CN.md](CONTRIBUTING.zh-CN.md)。涉及流程的 PR 必须同时改 `content/en/` 与 `content/zh/`。
+
+```bash
+python scripts/check-parity.py
+```
 
 ---
 

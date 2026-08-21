@@ -1,0 +1,32 @@
+name: Bug report
+description: Something broken in the skill or docs
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Steps, expected vs actual.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - SKILL.md / routing
+        - Greenfield stages 01-04
+        - Brownfield / specs
+        - Install
+        - Docs / translation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: From skill.json or CHANGELOG (e.g. 0.2.0)
+    validations:
+      required: false

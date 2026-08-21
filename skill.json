@@ -1,0 +1,27 @@
+{
+  "name": "write-before-code",
+  "version": "0.2.0",
+  "description": "HITL spec-driven Cursor skill: design -> module spec -> implement -> independent accept. Specs on disk first; implementers cannot self-mark done.",
+  "license": "MIT",
+  "author": "carlospan",
+  "repository": "https://github.com/carlospan/write-before-code",
+  "tags": [
+    "cursor",
+    "agent-skills",
+    "spec-driven-development",
+    "hitl",
+    "documentation"
+  ],
+  "triggers": [
+    "write-before-code",
+    "先写后码",
+    "一块一拍",
+    "HITL spec",
+    "spec-driven",
+    "SDD",
+    "agent drift",
+    "fake green",
+    "self-approved done",
+    "vibe coding structure"
+  ]
+}
