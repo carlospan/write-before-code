@@ -4,14 +4,15 @@
 
 **先落盘规格，再写代码。**
 
-面向 [Cursor](https://cursor.com) 的 Agent Skill：不让 AI「能跑就算交付」。  
+面向多 Agent 的 [Agent Skill](https://agentskills.io)（**Cursor · Codex · Trae · Claude Code**）：不让 AI「能跑就算交付」。  
 先把行为写进文件、和人一块一拍对齐，再编码——**写代码的那一方不能自己标完成。**
 
 | | |
 |--|--|
-| 形态 | 有主见的 Cursor Agent Skill（MIT） |
-| 版本 | 0.2.0 |
-| 文档 | [English](content/en/) · [中文](content/zh/) |
+| 形态 | 有主见的 Agent Skill（MIT）— Agent Skills 布局 |
+| 版本 | 0.3.0 |
+| 宿主 | [Cursor](https://cursor.com) · [Codex](https://developers.openai.com/codex) · [Trae](https://www.trae.ai) · [Claude Code](https://code.claude.com) |
+| 文档 | [English](content/en/) · [中文](content/zh/) · [适配说明](docs/adapters.zh-CN.md) |
 
 ---
 
@@ -42,7 +43,7 @@ Agent 写代码很快，但对齐意图很容易偷懒。常见翻车：
 
 ## 适合谁
 
-- 用 Cursor 的独立开发者或小团队，想要**可重复**的 Agent 流程  
+- 用 Cursor / Codex / Trae / Claude Code、想要**可重复** Agent 流程的独立开发者或小团队  
 - 架构与模块边界还在变的绿场产品  
 - 需要对外行为可审计的棕地改动  
 
@@ -90,33 +91,57 @@ flowchart LR
 
 ## 安装
 
+凡能加载 Agent Skills（`SKILL.md`）的宿主均可。完整路径表：[docs/adapters.zh-CN.md](docs/adapters.zh-CN.md)。
+
 ### 一键安装（推荐）
+
+默认装到**全部**已支持宿主（Cursor、Codex、Trae、Claude Code）：
 
 ```bash
 # macOS / Linux — 在本仓库克隆目录内
 ./scripts/install.sh
+./scripts/install.sh --agent codex
+./scripts/install.sh --agent all --scope project
 ```
 
 ```powershell
 # Windows PowerShell — 在本仓库克隆目录内
 .\scripts\install.ps1
+.\scripts\install.ps1 -Agent trae
+.\scripts\install.ps1 -Agent all -Scope project
 ```
 
-会安装到 `~/.cursor/skills/write-before-code/`（Windows：`%USERPROFILE%\.cursor\skills\write-before-code\`）。
+| Agent | 用户级安装路径 |
+|-------|----------------|
+| Cursor | `~/.cursor/skills/write-before-code/` |
+| Codex | `~/.agents/skills/write-before-code/` |
+| Trae | `~/.trae/skills/write-before-code/` |
+| Claude Code | `~/.claude/skills/write-before-code/` |
+
+重启后调用：Cursor/Trae/Claude `/write-before-code`；Codex `$write-before-code`；或直接说「用 write-before-code」。
 
 ### 手动
 
 ```text
 git clone https://github.com/carlospan/write-before-code.git
-# 再复制/链接到 ~/.cursor/skills/write-before-code
+# 按上表复制/链接到对应宿主路径
 ```
 
-Skill 目录根下必须有 `SKILL.md`。
+Skill 目录根下必须有 `SKILL.md`（不要多套一层目录）。
 
-### 项目级 Skill（仅单个仓库）
+### 项目级 Skill（团队 / 单仓）
+
+```bash
+./scripts/install.sh --agent all --scope project
+```
+
+常见布局：
 
 ```text
-<仓库>/.cursor/skills/write-before-code/
+<仓库>/.cursor/skills/write-before-code/   # Cursor
+<仓库>/.agents/skills/write-before-code/   # Codex（及共享约定）
+<仓库>/.trae/skills/write-before-code/     # Trae
+<仓库>/.claude/skills/write-before-code/   # Claude Code
 ```
 
 ### 项目文档模板
@@ -142,16 +167,16 @@ Skill 目录根下必须有 `SKILL.md`。
 
 ## 快速开始
 
-1. 按上文安装 Skill。  
+1. 按上文为你的 Agent 安装 Skill。  
 2. 将 `content/zh/`（或 `content/en/`）复制为产品仓库的 `docs/`。  
 3. 在 `docs/explanation/PRD.md` 写入**真实**需求（空骨架不算）。  
-4. 在 Cursor 中说：
+4. 在 Agent 中说：
 
 ```text
 用 write-before-code，从 01 开始。
 ```
 
-5. 每个模块：`02` → `03` → **新开对话**做 `04` 验收。  
+5. 每个模块：`02` → `03` → **新开对话/会话**做 `04` 验收。  
 6. 模块均为 ✅ 之后，行为变更走棕地 `specs/tasks/`（见 SDD-GUIDE）。
 
 玩具 PRD：[examples/toy-prd.zh-CN.md](examples/toy-prd.zh-CN.md) · [English](examples/toy-prd.md)
@@ -172,12 +197,13 @@ Skill 目录根下必须有 `SKILL.md`。
 
 ```text
 write-before-code/
-├── SKILL.md              # Agent 入口
-├── skill.json            # 版本 / 标签元数据
+├── SKILL.md              # Agent 入口（Agent Skills 标准）
+├── skill.json            # 版本 / compatibleAgents
 ├── README.md             # 英文
 ├── README.zh-CN.md       # 中文（本文件）
+├── docs/adapters.zh-CN.md
 ├── CONTRIBUTING.md
-├── scripts/              # 安装 + 语料对齐检查
+├── scripts/              # 多 Agent 安装 + 语料对齐检查
 ├── examples/
 ├── content/
 │   ├── en/

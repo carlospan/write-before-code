@@ -1,12 +1,21 @@
 {
   "name": "write-before-code",
-  "version": "0.2.0",
-  "description": "HITL spec-driven Cursor skill: design -> module spec -> implement -> independent accept. Specs on disk first; implementers cannot self-mark done.",
+  "version": "0.3.0",
+  "description": "HITL spec-driven agent skill for Cursor, Codex, Trae, and Claude Code: design -> module spec -> implement -> independent accept. Specs on disk first; implementers cannot self-mark done.",
   "license": "MIT",
   "author": "carlospan",
   "repository": "https://github.com/carlospan/write-before-code",
+  "compatibleAgents": [
+    "cursor",
+    "codex",
+    "trae",
+    "claude-code"
+  ],
   "tags": [
     "cursor",
+    "codex",
+    "trae",
+    "claude-code",
     "agent-skills",
     "spec-driven-development",
     "hitl",

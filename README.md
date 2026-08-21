@@ -4,14 +4,15 @@
 
 **Specs on disk first. Code second.**
 
-A [Cursor](https://cursor.com) Agent Skill that stops AI coding from “shipping whatever compiles.”  
+A multi-agent [Agent Skill](https://agentskills.io) (**Cursor · Codex · Trae · Claude Code**) that stops AI coding from “shipping whatever compiles.”  
 You lock behavior in files, agree with a human one slice at a time, then implement — and **the implementer cannot mark the work done.**
 
 | | |
 |--|--|
-| Type | Opinionated Cursor Agent Skill (MIT) |
-| Version | 0.2.0 |
-| Docs | [English](content/en/) · [中文](content/zh/) |
+| Type | Opinionated Agent Skill (MIT) — Agent Skills layout |
+| Version | 0.3.0 |
+| Hosts | [Cursor](https://cursor.com) · [Codex](https://developers.openai.com/codex) · [Trae](https://www.trae.ai) · [Claude Code](https://code.claude.com) |
+| Docs | [English](content/en/) · [中文](content/zh/) · [Adapters](docs/adapters.md) |
 
 ---
 
@@ -42,7 +43,7 @@ Not a drop-in replacement for Spec Kit / BMAD / OpenSpec — stricter, more docu
 
 ## Who it’s for
 
-- Solo builders or small teams using Cursor who want **repeatable** agent runs  
+- Solo builders or small teams using Cursor / Codex / Trae / Claude Code who want **repeatable** agent runs  
 - Greenfield products where architecture and module boundaries still move  
 - Brownfield changes where external behavior must stay auditable  
 
@@ -90,33 +91,57 @@ Details: [SKILL.md](SKILL.md) · [content/en/how-to/agent-prompts/00-overview.md
 
 ## Install
 
+Works on any host that loads Agent Skills (`SKILL.md`). Full path matrix: [docs/adapters.md](docs/adapters.md).
+
 ### One-liner (recommended)
+
+Default installs to **all** supported hosts (Cursor, Codex, Trae, Claude Code):
 
 ```bash
 # macOS / Linux — from a clone of this repo
 ./scripts/install.sh
+./scripts/install.sh --agent codex          # one host
+./scripts/install.sh --agent all --scope project   # commit into a product repo
 ```
 
 ```powershell
 # Windows PowerShell — from a clone of this repo
 .\scripts\install.ps1
+.\scripts\install.ps1 -Agent trae
+.\scripts\install.ps1 -Agent all -Scope project
 ```
 
-This copies the skill into `~/.cursor/skills/write-before-code/` (Windows: `%USERPROFILE%\.cursor\skills\write-before-code\`).
+| Agent | User install path |
+|-------|-------------------|
+| Cursor | `~/.cursor/skills/write-before-code/` |
+| Codex | `~/.agents/skills/write-before-code/` |
+| Trae | `~/.trae/skills/write-before-code/` |
+| Claude Code | `~/.claude/skills/write-before-code/` |
+
+Invoke after restart: Cursor/Trae/Claude `/write-before-code`; Codex `$write-before-code`; or just say “use write-before-code”.
 
 ### Manual
 
 ```text
 git clone https://github.com/carlospan/write-before-code.git
-# then copy/symlink the repo to ~/.cursor/skills/write-before-code
+# copy/symlink into the host path from the table above
 ```
 
-`SKILL.md` must sit at the skill folder root.
+`SKILL.md` must sit at the skill folder root (no extra nesting).
 
-### Project skill (one repo only)
+### Project skill (team / one repo)
+
+```bash
+./scripts/install.sh --agent all --scope project
+```
+
+Typical layout:
 
 ```text
-<repo>/.cursor/skills/write-before-code/
+<repo>/.cursor/skills/write-before-code/   # Cursor
+<repo>/.agents/skills/write-before-code/   # Codex (+ shared convention)
+<repo>/.trae/skills/write-before-code/     # Trae
+<repo>/.claude/skills/write-before-code/   # Claude Code
 ```
 
 ### Project docs template
@@ -142,16 +167,16 @@ Do not mix suffixes inside one project docs tree.
 
 ## Quick start
 
-1. Install the skill (above).
+1. Install the skill for your agent(s) (above).
 2. Copy `content/en/` (or `content/zh/`) into the product as `docs/`.
 3. Fill `docs/explanation/PRD.md` with **real** requirements (empty skeletons do not count).
-4. In Cursor:
+4. In your agent:
 
 ```text
 Use write-before-code. Start at stage 01.
 ```
 
-5. Per module: `02` → `03` → **open a new chat** for `04` accept.
+5. Per module: `02` → `03` → **open a new chat / session** for `04` accept.
 6. After modules are ✅, ship behavior changes via brownfield `specs/tasks/` (see SDD-GUIDE).
 
 Toy PRD: [examples/toy-prd.md](examples/toy-prd.md) · [中文](examples/toy-prd.zh-CN.md)
@@ -172,12 +197,13 @@ Toy PRD: [examples/toy-prd.md](examples/toy-prd.md) · [中文](examples/toy-prd
 
 ```text
 write-before-code/
-├── SKILL.md              # Agent entry
-├── skill.json            # Version / tags metadata
+├── SKILL.md              # Agent entry (Agent Skills standard)
+├── skill.json            # Version / compatibleAgents
 ├── README.md             # English (this file)
 ├── README.zh-CN.md       # Chinese
+├── docs/adapters.md      # Host install matrix
 ├── CONTRIBUTING.md
-├── scripts/              # install + parity check
+├── scripts/              # multi-agent install + parity check
 ├── examples/
 ├── content/
 │   ├── en/               # Full English corpus

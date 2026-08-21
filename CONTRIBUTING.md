@@ -19,16 +19,18 @@ Thanks for helping improve **write-before-code**.
 python scripts/check-parity.py
 ```
 
-## Install for local Cursor testing
+## Install for local testing
 
 ```bash
-# macOS / Linux
-./scripts/install.sh
-
-# Windows PowerShell
-./scripts/install.ps1
+./scripts/install.sh --agent all
+# or one host: --agent cursor|codex|trae|claude
 ```
 
+```powershell
+.\scripts\install.ps1 -Agent all
+```
+
+Host paths: [docs/adapters.md](docs/adapters.md). Do not maintain separate prompt trees per IDE.
 ## Pull requests
 
 - Prefer small PRs: docs wording vs process rule changes.

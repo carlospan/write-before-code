@@ -1,21 +1,25 @@
 ---
 name: write-before-code
 description: >-
-  HITL spec-driven Cursor skill: overall design -> module spec -> implement ->
-  independent accept, plus brownfield task packs. Enforces specs on disk before
-  code, one-slice consensus, and forbids implementers from self-marking done.
-  Use when starting a project with agents, writing specs before coding,
-  accepting a module, fixing agent drift / fake-green tests / self-approved done,
-  vibe-coding that needs structure, or when the user says write-before-code,
-  先写后码, 一块一拍, HITL spec, or SDD.
+  HITL spec-driven agent skill (Cursor, Codex, Trae, Claude Code): overall
+  design -> module spec -> implement -> independent accept, plus brownfield
+  task packs. Enforces specs on disk before code, one-slice consensus, and
+  forbids implementers from self-marking done. Use when starting a project
+  with agents, writing specs before coding, accepting a module, fixing agent
+  drift / fake-green tests / self-approved done, vibe-coding that needs
+  structure, or when the user says write-before-code, 先写后码, 一块一拍,
+  HITL spec, or SDD.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   license: MIT
 ---
 
 # write-before-code
 
 **Tagline:** Specs on disk first. Code second.
+
+Works on any host that loads [Agent Skills](https://agentskills.io) (`SKILL.md`).
+Install paths: [docs/adapters.md](docs/adapters.md).
 
 Match the **language of the user's latest message**:
 
@@ -150,4 +154,5 @@ Brownfield: copy `specs/tasks/_template.md` -> fill HITL one slice at a time -> 
 
 - Opinionated. Not a Spec Kit / BMAD / OpenSpec replacement.
 - Keep `content/en/` and `content/zh/` in sync when editing process rules.
+- One skill package for all hosts — do not fork prompt trees per IDE.
 - Version: see frontmatter `metadata.version` and [CHANGELOG.md](CHANGELOG.md).

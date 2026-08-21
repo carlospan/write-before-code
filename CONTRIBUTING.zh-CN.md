@@ -18,16 +18,18 @@
 python scripts/check-parity.py
 ```
 
-## 本地安装到 Cursor 自测
+## 本地安装自测
 
 ```bash
-# macOS / Linux
-./scripts/install.sh
-
-# Windows PowerShell
-./scripts/install.ps1
+./scripts/install.sh --agent all
+# 或单个：--agent cursor|codex|trae|claude
 ```
 
+```powershell
+.\scripts\install.ps1 -Agent all
+```
+
+宿主路径见 [docs/adapters.zh-CN.md](docs/adapters.zh-CN.md)。不要按 IDE 分叉提示词树。
 ## Pull Request
 
 - 尽量小 PR：措辞润色与流程规则变更分开。

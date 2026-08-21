@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 — 2026-08-21
+
+- Multi-agent: install targets for Cursor, Codex, Trae, and Claude Code (`--agent` / `-Agent`).
+- Docs: `docs/adapters.md` (+ zh-CN); README repositioned as Agent Skills package, not Cursor-only.
+- `skill.json` gains `compatibleAgents`; SKILL description no longer Cursor-locked.
+
 ## 0.2.0 — 2026-08-21
 
 - Repo hygiene: removed duplicate `template/`, thin `stages/`, and `guides/`.
