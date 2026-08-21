@@ -11,7 +11,7 @@
 |--|--|
 | 形态 | 有主见的 Agent Skill（MIT）— Agent Skills 布局 |
 | 版本 | 0.3.0 |
-| 宿主 | [Cursor](https://cursor.com) · [Codex](https://developers.openai.com/codex) · [Trae](https://www.trae.ai) · [Claude Code](https://code.claude.com) |
+| 支持的 Agent | [Cursor](https://cursor.com) · [Codex](https://developers.openai.com/codex) · [Trae](https://www.trae.ai) · [Claude Code](https://code.claude.com) |
 | 文档 | [English](content/en/) · [中文](content/zh/) · [适配说明](docs/adapters.zh-CN.md) |
 
 ---
@@ -91,11 +91,11 @@ flowchart LR
 
 ## 安装
 
-凡能加载 Agent Skills（`SKILL.md`）的宿主均可。完整路径表：[docs/adapters.zh-CN.md](docs/adapters.zh-CN.md)。
+凡能加载 Agent Skills（`SKILL.md`）的 Agent 均可。完整路径表：[docs/adapters.zh-CN.md](docs/adapters.zh-CN.md)。
 
 ### 一键安装（推荐）
 
-默认装到**全部**已支持宿主（Cursor、Codex、Trae、Claude Code）：
+默认装到**全部**已支持 Agent（Cursor、Codex、Trae、Claude Code）：
 
 ```bash
 # macOS / Linux — 在本仓库克隆目录内
@@ -124,7 +124,7 @@ flowchart LR
 
 ```text
 git clone https://github.com/carlospan/write-before-code.git
-# 按上表复制/链接到对应宿主路径
+# 按上表复制/链接到对应 Agent 路径
 ```
 
 Skill 目录根下必须有 `SKILL.md`（不要多套一层目录）。

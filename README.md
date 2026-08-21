@@ -11,7 +11,7 @@ You lock behavior in files, agree with a human one slice at a time, then impleme
 |--|--|
 | Type | Opinionated Agent Skill (MIT) — Agent Skills layout |
 | Version | 0.3.0 |
-| Hosts | [Cursor](https://cursor.com) · [Codex](https://developers.openai.com/codex) · [Trae](https://www.trae.ai) · [Claude Code](https://code.claude.com) |
+| Agents | [Cursor](https://cursor.com) · [Codex](https://developers.openai.com/codex) · [Trae](https://www.trae.ai) · [Claude Code](https://code.claude.com) |
 | Docs | [English](content/en/) · [中文](content/zh/) · [Adapters](docs/adapters.md) |
 
 ---
@@ -91,16 +91,16 @@ Details: [SKILL.md](SKILL.md) · [content/en/how-to/agent-prompts/00-overview.md
 
 ## Install
 
-Works on any host that loads Agent Skills (`SKILL.md`). Full path matrix: [docs/adapters.md](docs/adapters.md).
+Works on any agent that loads Agent Skills (`SKILL.md`). Full path matrix: [docs/adapters.md](docs/adapters.md).
 
 ### One-liner (recommended)
 
-Default installs to **all** supported hosts (Cursor, Codex, Trae, Claude Code):
+Default installs to **all** supported agents (Cursor, Codex, Trae, Claude Code):
 
 ```bash
 # macOS / Linux — from a clone of this repo
 ./scripts/install.sh
-./scripts/install.sh --agent codex          # one host
+./scripts/install.sh --agent codex          # one agent
 ./scripts/install.sh --agent all --scope project   # commit into a product repo
 ```
 
@@ -124,7 +124,7 @@ Invoke after restart: Cursor/Trae/Claude `/write-before-code`; Codex `$write-bef
 
 ```text
 git clone https://github.com/carlospan/write-before-code.git
-# copy/symlink into the host path from the table above
+# copy/symlink into the agent path from the table above
 ```
 
 `SKILL.md` must sit at the skill folder root (no extra nesting).
@@ -201,7 +201,7 @@ write-before-code/
 ├── skill.json            # Version / compatibleAgents
 ├── README.md             # English (this file)
 ├── README.zh-CN.md       # Chinese
-├── docs/adapters.md      # Host install matrix
+├── docs/adapters.md      # Per-agent install matrix
 ├── CONTRIBUTING.md
 ├── scripts/              # multi-agent install + parity check
 ├── examples/

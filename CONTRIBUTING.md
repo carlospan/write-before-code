@@ -23,14 +23,15 @@ python scripts/check-parity.py
 
 ```bash
 ./scripts/install.sh --agent all
-# or one host: --agent cursor|codex|trae|claude
+# or one agent: --agent cursor|codex|trae|claude
 ```
 
 ```powershell
 .\scripts\install.ps1 -Agent all
 ```
 
-Host paths: [docs/adapters.md](docs/adapters.md). Do not maintain separate prompt trees per IDE.
+Install paths: [docs/adapters.md](docs/adapters.md). Do not maintain separate prompt trees per IDE.
+
 ## Pull requests
 
 - Prefer small PRs: docs wording vs process rule changes.

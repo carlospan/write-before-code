@@ -4,6 +4,7 @@
 
 - Multi-agent: install targets for Cursor, Codex, Trae, and Claude Code (`--agent` / `-Agent`).
 - Docs: `docs/adapters.md` (+ zh-CN); README repositioned as Agent Skills package, not Cursor-only.
+- Wording: prefer “supported agents / 支持的 Agent” over “hosts / 宿主” in user-facing docs.
 - `skill.json` gains `compatibleAgents`; SKILL description no longer Cursor-locked.
 
 ## 0.2.0 — 2026-08-21

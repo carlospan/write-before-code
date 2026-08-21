@@ -29,7 +29,7 @@ python scripts/check-parity.py
 .\scripts\install.ps1 -Agent all
 ```
 
-宿主路径见 [docs/adapters.zh-CN.md](docs/adapters.zh-CN.md)。不要按 IDE 分叉提示词树。
+各 Agent 安装路径见 [docs/adapters.zh-CN.md](docs/adapters.zh-CN.md)。不要按 IDE 分叉提示词树。
 ## Pull Request
 
 - 尽量小 PR：措辞润色与流程规则变更分开。

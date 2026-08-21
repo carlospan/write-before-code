@@ -18,7 +18,7 @@ metadata:
 
 **Tagline:** Specs on disk first. Code second.
 
-Works on any host that loads [Agent Skills](https://agentskills.io) (`SKILL.md`).
+Works on any agent that loads [Agent Skills](https://agentskills.io) (`SKILL.md`).
 Install paths: [docs/adapters.md](docs/adapters.md).
 
 Match the **language of the user's latest message**:
@@ -154,5 +154,5 @@ Brownfield: copy `specs/tasks/_template.md` -> fill HITL one slice at a time -> 
 
 - Opinionated. Not a Spec Kit / BMAD / OpenSpec replacement.
 - Keep `content/en/` and `content/zh/` in sync when editing process rules.
-- One skill package for all hosts — do not fork prompt trees per IDE.
+- One skill package for all supported agents — do not fork prompt trees per IDE.
 - Version: see frontmatter `metadata.version` and [CHANGELOG.md](CHANGELOG.md).
